@@ -1,5 +1,6 @@
 class MyCustomElement extends HTMLElement {
   static observedAttributes = ['text'];
+  text = '';
 
   constructor() {
     super();
@@ -13,7 +14,8 @@ class MyCustomElement extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'text') {
-      const p = this.querySelector('p');
+      this.text = newValue;
+      const p = this.querySelector('p').textContent = newValue;
       if (p) {
         p.textContent = newValue;
       }
